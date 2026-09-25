@@ -573,55 +573,62 @@
   </product-component>
 {%- else -%}
   {%- liquid
-    assign ratio = 1
-    assign placeholder = true
-    if media_aspect_ratio == 'portrait'
-      assign ratio = 0.8
+    assign cycle_index = placeholder_image | slice: -1 | plus: 0
+    if cycle_index == 1 or cycle_index == 4
+      assign demo_title = "AXON Q1 // QUANTUM NEURAL ACCELERATOR"
+      assign demo_price = "$499.00"
+      assign demo_img = "product-neural-processor.jpg"
+      assign demo_badge = "QUANTUM 128"
+    elsif cycle_index == 2 or cycle_index == 5
+      assign demo_title = "NEXUS SYNC // CYBER ANC HEADSET"
+      assign demo_price = "$329.00"
+      assign demo_img = "product-cyber-audio.jpg"
+      assign demo_badge = "SPATIAL AUDIO"
+    else
+      assign demo_title = "NEURAL LINK // TELEMETRY WEARABLE"
+      assign demo_price = "$279.00"
+      assign demo_img = "product-neural-watch.jpg"
+      assign demo_badge = "BIO-TELEMETRY"
     endif
   -%}
-  <div class="card-wrapper product-card-wrapper underline-links-hover">
-    <div
-      class="
-        card card--{{ settings.card_style }}
-        {% if extend_height %} card--extend-height{% endif %}
-        {% if image_shape and image_shape != 'default' %} card--shape{% endif %}
-        {% if settings.card_style == 'card' %} color-{{ settings.card_color_scheme }} gradient{% endif %}
-      "
-      style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;"
-    >
-      <div
-        class="card__inner{% if settings.card_style == 'standard' %} color-{{ settings.card_color_scheme }} gradient{% endif %} ratio"
-      >
-        <div
-          class="card__media {% if image_shape and image_shape != 'default' %} shape--{{ image_shape }} color-{{ settings.card_color_scheme }} gradient{% endif %}"
-        >
-          <div
-            class="media media--transparent"
-          >
-            {%- if placeholder_image -%}
-              {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
-            {%- else -%}
-              {{ 'product-apparel-2' | placeholder_svg_tag: 'placeholder-svg' }}
-            {% endif %}
-          </div>
+  <div class="card-wrapper product-card-wrapper h-full">
+    <div class="group relative rounded-xl bg-[#0F172A] border border-slate-800 p-3 sm:p-4 flex flex-col justify-between h-full transition-all duration-300 hover:border-cyan-500/50 hover:shadow-[0_8px_30px_rgba(0,0,0,0.6),0_0_25px_rgba(0,240,255,0.2)] hover:-translate-y-1">
+      
+      <!-- Top Image & Badge Container -->
+      <div class="relative w-full aspect-square rounded-lg overflow-hidden bg-[#070A14] mb-4 border border-slate-800/80">
+        <img src="{{ demo_img | asset_url }}" alt="{{ demo_title }}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
+        
+        <!-- Tech Badge -->
+        <div class="absolute top-2.5 left-2.5 px-2 py-1 rounded bg-[#0A0E1A]/90 backdrop-blur-md border border-cyan-500/40 text-[10px] font-mono text-cyan-300 font-bold uppercase tracking-wider shadow-[0_0_10px_rgba(0,240,255,0.2)]">
+          {{ demo_badge }}
+        </div>
+        
+        <!-- Live System Chip -->
+        <div class="absolute top-2.5 right-2.5 flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-slate-900/80 text-[10px] font-mono text-emerald-400 border border-emerald-500/30">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+          <span>ONLINE</span>
         </div>
       </div>
-      <div class="card__content">
-        <div class="card__information">
-          <h3 class="card__heading card__heading--placeholder{% if settings.card_style == 'standard' %} h5{% endif %}">
-            <a role="link" aria-disabled="true" class="full-unstyled-link">
-              {{ 'onboarding.product_title' | t }}
-            </a>
+
+      <!-- Title & Price Details -->
+      <div class="space-y-2 flex-1 flex flex-col justify-between">
+        <div>
+          <div class="text-[11px] font-mono text-slate-500 uppercase tracking-widest">SPEC // CLASS A</div>
+          <h3 class="text-sm sm:text-base font-bold text-white group-hover:text-cyan-300 transition-colors line-clamp-2">
+            <a href="#" class="after:absolute after:inset-0">{{ demo_title }}</a>
           </h3>
-          <div class="card-information">
-            {%- if show_vendor -%}
-              <span class="visually-hidden">{{ 'accessibility.vendor' | t }}</span>
-              <div class="caption-with-letter-spacing light">{{ 'products.product.vendor' | t }}</div>
-            {%- endif -%}
-            {% render 'price', placeholder: placeholder, show_compare_at_price: true %}
+        </div>
+
+        <div class="pt-3 border-t border-slate-800 flex items-center justify-between z-10 relative">
+          <div class="font-mono text-base font-bold text-cyan-400 drop-shadow-[0_0_8px_rgba(0,240,255,0.3)]">
+            {{ demo_price }}
           </div>
+          <button type="button" class="px-3 py-1.5 rounded bg-cyan-950 text-cyan-300 border border-cyan-500/40 text-xs font-mono font-bold uppercase tracking-wider hover:bg-cyan-400 hover:text-slate-950 hover:shadow-[0_0_15px_rgba(0,240,255,0.5)] transition-all">
+            + ACQUIRE
+          </button>
         </div>
       </div>
+
     </div>
   </div>
 {%- endif -%}

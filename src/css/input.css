@@ -1,0 +1,439 @@
+@import "tailwindcss";
+
+@source "../../layout/**/*.liquid";
+@source "../../sections/**/*.liquid";
+@source "../../snippets/**/*.liquid";
+@source "../../templates/**/*.{liquid,json}";
+
+@theme {
+  --color-cyber-black: #050811;
+  --color-cyber-dark: #0A0E1A;
+  --color-cyber-surface: #111827;
+  --color-cyber-elevated: #151D2F;
+  --color-cyber-card: #131B2E;
+  --color-cyber-border: #1E293B;
+
+  --color-neon-cyan: #00F0FF;
+  --color-neon-cyan-hover: #38BDF8;
+  --color-neon-cyan-glow: rgba(0, 240, 255, 0.35);
+  --color-neon-purple: #8B5CF6;
+  --color-neon-indigo: #6366F1;
+  --color-neon-pink: #EC4899;
+  --color-electric-blue: #38BDF8;
+
+  --font-tech: 'Space Grotesk', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, Consolas, monospace;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.8; filter: drop-shadow(0 0 15px rgba(0, 240, 255, 0.4)); }
+  50% { opacity: 1; filter: drop-shadow(0 0 30px rgba(0, 240, 255, 0.8)); }
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 4s ease-in-out infinite;
+}
+
+/* ========================================================
+   GLOBAL TECH THEMING & TYPOGRAPHY
+   ======================================================== */
+
+:root {
+  --font-body-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  --font-heading-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  color-scheme: dark;
+}
+
+body {
+  background-color: #0A0E1A !important;
+  color: #F1F5F9 !important;
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(0, 240, 255, 0.05) 0%, transparent 60%),
+    radial-gradient(circle at 100% 100%, rgba(139, 92, 246, 0.05) 0%, transparent 50%),
+    linear-gradient(to right, rgba(0, 240, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 240, 255, 0.015) 1px, transparent 1px) !important;
+  background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px !important;
+}
+
+/* Custom Futuristic Scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: #070A14;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1E293B;
+  border-radius: 9999px;
+  border: 1px solid rgba(0, 240, 255, 0.25);
+  transition: all 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #00F0FF;
+  box-shadow: 0 0 10px #00F0FF;
+}
+
+/* High-Tech Selection Highlight */
+::selection {
+  background: #00F0FF !important;
+  color: #0A0E1A !important;
+}
+
+/* ========================================================
+   UTILITY CLASSES (TECH & CYBER)
+   ======================================================== */
+
+.tech-title-gradient {
+  background: linear-gradient(135deg, #00F0FF 0%, #38BDF8 40%, #8B5CF6 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  display: inline-block;
+}
+
+.tech-glow-cyan {
+  box-shadow: 0 0 18px rgba(0, 240, 255, 0.4), inset 0 0 10px rgba(0, 240, 255, 0.08) !important;
+}
+
+.tech-glow-purple {
+  box-shadow: 0 0 18px rgba(139, 92, 246, 0.4), inset 0 0 10px rgba(139, 92, 246, 0.08) !important;
+}
+
+.tech-border {
+  border: 1px solid rgba(0, 240, 255, 0.2) !important;
+}
+
+.tech-card-bg {
+  background: #111827 !important;
+  border: 1px solid rgba(30, 41, 59, 0.9) !important;
+}
+
+/* ========================================================
+   HEADER & NAVIGATION BAR (GLASSMORPHISM & CYBER ACCENT)
+   ======================================================== */
+
+.section-header sticky-header,
+.header-wrapper {
+  background: rgba(10, 14, 26, 0.88) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border-bottom: 1px solid rgba(0, 240, 255, 0.15) !important;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.6) !important;
+}
+
+.header__heading-link,
+.header__heading-logo-wrapper {
+  transition: filter 0.3s ease;
+}
+
+.header__heading-link:hover {
+  filter: drop-shadow(0 0 8px rgba(0, 240, 255, 0.6));
+}
+
+.header__menu-item {
+  color: #E2E8F0 !important;
+  font-family: 'Space Grotesk', sans-serif !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.04em !important;
+  transition: all 0.2s ease !important;
+  position: relative;
+}
+
+.header__menu-item:hover,
+.header__menu-item[aria-current="page"] {
+  color: #00F0FF !important;
+  text-shadow: 0 0 12px rgba(0, 240, 255, 0.5) !important;
+}
+
+.header__icon {
+  color: #E2E8F0 !important;
+  transition: all 0.2s ease !important;
+}
+
+.header__icon:hover {
+  color: #00F0FF !important;
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 8px rgba(0, 240, 255, 0.7));
+}
+
+/* Cart Bubble Counter in Neon */
+.cart-count-bubble {
+  background-color: #00F0FF !important;
+  color: #0A0E1A !important;
+  font-weight: 700 !important;
+  font-family: 'JetBrains Mono', monospace !important;
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.6) !important;
+}
+
+/* Announcement Bar Tech Banner */
+.announcement-bar {
+  background: linear-gradient(90deg, #070A14 0%, #151D2F 50%, #070A14 100%) !important;
+  border-bottom: 1px solid rgba(0, 240, 255, 0.25) !important;
+}
+
+.announcement-bar__message {
+  font-family: 'JetBrains Mono', monospace !important;
+  font-size: 1.2rem !important;
+  letter-spacing: 0.12em !important;
+  color: #00F0FF !important;
+  text-shadow: 0 0 8px rgba(0, 240, 255, 0.4);
+}
+
+/* ========================================================
+   BUTTONS (CYBER GLOW & TRANSITIONS)
+   ======================================================== */
+
+.button,
+.shopify-challenge__button,
+.customer button {
+  position: relative;
+  font-family: 'Space Grotesk', sans-serif !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.06em !important;
+  border-radius: 4px !important;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+/* Primary Button (Neon Cyan) */
+.button--primary,
+.button:not(.button--secondary):not(.button--tertiary) {
+  background: #00F0FF !important;
+  color: #0A0E1A !important;
+  border: 1px solid #00F0FF !important;
+  box-shadow: 0 0 16px rgba(0, 240, 255, 0.35) !important;
+}
+
+.button--primary:hover,
+.button:not(.button--secondary):not(.button--tertiary):hover {
+  background: #38BDF8 !important;
+  border-color: #38BDF8 !important;
+  box-shadow: 0 0 28px rgba(0, 240, 255, 0.7) !important;
+  transform: translateY(-2px);
+}
+
+/* Secondary Button (Ghost Cyber Outline) */
+.button--secondary {
+  background: rgba(10, 14, 26, 0.6) !important;
+  color: #00F0FF !important;
+  border: 1px solid rgba(0, 240, 255, 0.5) !important;
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.15) !important;
+}
+
+.button--secondary:hover {
+  background: rgba(0, 240, 255, 0.12) !important;
+  border-color: #00F0FF !important;
+  box-shadow: 0 0 22px rgba(0, 240, 255, 0.45) !important;
+  transform: translateY(-2px);
+}
+
+/* ========================================================
+   PRODUCT CARDS & GRIDS (ELEVATED CYBER SURFACES)
+   ======================================================== */
+
+.card-wrapper {
+  border-radius: 8px !important;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.card {
+  background: #111827 !important;
+  border: 1px solid rgba(30, 41, 59, 0.8) !important;
+  border-radius: 8px !important;
+  overflow: hidden !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
+}
+
+.card__inner {
+  background: #0D1322 !important;
+  border-radius: 8px 8px 0 0 !important;
+}
+
+.card-wrapper:hover .card {
+  border-color: rgba(0, 240, 255, 0.45) !important;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.7), 0 0 25px rgba(0, 240, 255, 0.22) !important;
+  transform: translateY(-4px);
+}
+
+.card__heading a {
+  color: #F8FAFC !important;
+  font-family: 'Space Grotesk', sans-serif !important;
+  transition: color 0.2s ease !important;
+}
+
+.card-wrapper:hover .card__heading a {
+  color: #00F0FF !important;
+}
+
+/* ========================================================
+   PRICING & TECH BADGES
+   ======================================================== */
+
+.price {
+  font-family: 'JetBrains Mono', monospace !important;
+  font-size: 1.6rem !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.02em !important;
+  color: #00F0FF !important;
+}
+
+.price__regular .price-item--regular {
+  color: #00F0FF !important;
+}
+
+.price--on-sale .price-item--sale {
+  color: #EC4899 !important;
+  text-shadow: 0 0 10px rgba(236, 72, 153, 0.3);
+}
+
+.price--on-sale .price-item--regular {
+  color: #64748B !important;
+  text-decoration: line-through;
+}
+
+/* Futuristic Monospace Badges */
+.badge {
+  font-family: 'JetBrains Mono', monospace !important;
+  font-size: 1.1rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  border-radius: 4px !important;
+  padding: 4px 10px !important;
+  border: 1px solid rgba(0, 240, 255, 0.4) !important;
+  background: rgba(10, 14, 26, 0.9) !important;
+  color: #00F0FF !important;
+  box-shadow: 0 0 12px rgba(0, 240, 255, 0.2) !important;
+}
+
+.badge--sale {
+  border-color: rgba(236, 72, 153, 0.5) !important;
+  color: #EC4899 !important;
+  box-shadow: 0 0 12px rgba(236, 72, 153, 0.25) !important;
+}
+
+/* ========================================================
+   FORM CONTROLS, INPUTS & SEARCH
+   ======================================================== */
+
+.field__input,
+.select__select,
+.localization-selector,
+.customer select {
+  background-color: #0F172A !important;
+  color: #F8FAFC !important;
+  border: 1px solid #1E293B !important;
+  border-radius: 4px !important;
+  font-family: 'Space Grotesk', sans-serif !important;
+  transition: all 0.2s ease !important;
+}
+
+.field__input:focus,
+.select__select:focus,
+.localization-selector:focus {
+  border-color: #00F0FF !important;
+  box-shadow: 0 0 16px rgba(0, 240, 255, 0.35) !important;
+  outline: none !important;
+}
+
+.field__label {
+  color: #94A3B8 !important;
+}
+
+.search__input.field__input {
+  background-color: #111827 !important;
+  border-color: rgba(0, 240, 255, 0.3) !important;
+}
+
+/* ========================================================
+   CART DRAWER & SLIDEOUT MODALS
+   ======================================================== */
+
+.cart-drawer,
+.menu-drawer {
+  background: #0A0E1A !important;
+  border-left: 1px solid rgba(0, 240, 255, 0.2) !important;
+  box-shadow: -15px 0 40px rgba(0, 0, 0, 0.85) !important;
+}
+
+.cart-drawer .drawer__heading {
+  font-family: 'Space Grotesk', sans-serif !important;
+  color: #00F0FF !important;
+}
+
+.cart-item {
+  border-bottom: 1px solid rgba(30, 41, 59, 0.8) !important;
+}
+
+/* ========================================================
+   FOOTER (DEEP CYBER SLATE WITH NEON ACCENTS)
+   ======================================================== */
+
+.footer {
+  background: #070A14 !important;
+  border-top: 1px solid rgba(0, 240, 255, 0.15) !important;
+  position: relative;
+}
+
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, #00F0FF 50%, transparent 100%);
+  opacity: 0.6;
+}
+
+.footer__heading {
+  font-family: 'Space Grotesk', sans-serif !important;
+  color: #00F0FF !important;
+  font-size: 1.5rem !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+}
+
+.footer-block__details-content .list-menu__item--link {
+  color: #94A3B8 !important;
+  transition: all 0.2s ease !important;
+}
+
+.footer-block__details-content .list-menu__item--link:hover {
+  color: #00F0FF !important;
+  padding-left: 4px;
+}
+
+.footer__copyright {
+  color: #64748B !important;
+  font-family: 'JetBrains Mono', monospace !important;
+  font-size: 1.2rem !important;
+}
+
+/* Quantity Selector Tech Style */
+.quantity {
+  background: #0F172A !important;
+  border: 1px solid #1E293B !important;
+  border-radius: 4px !important;
+}
+
+.quantity__input {
+  font-family: 'JetBrains Mono', monospace !important;
+  color: #00F0FF !important;
+}
+
+.quantity__button {
+  color: #94A3B8 !important;
+}
+
+.quantity__button:hover {
+  color: #00F0FF !important;
+}

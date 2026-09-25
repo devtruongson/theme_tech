@@ -1,0 +1,27 @@
+{
+  "name": "theme_export__6bestpick-myshopify-com-rise__24sep2026-1047pm",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build:css": "tailwindcss -i ./src/css/input.css -o ./assets/theme-tech.css --minify",
+    "dev:css": "tailwindcss -i ./src/css/input.css -o ./assets/theme-tech.css --watch",
+    "build": "npm run build:css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devtruongson/theme_tech.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/devtruongson/theme_tech/issues"
+  },
+  "homepage": "https://github.com/devtruongson/theme_tech#readme",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.3",
+    "tailwindcss": "^4.3.3"
+  }
+}

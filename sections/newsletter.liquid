@@ -1,253 +1,101 @@
-{{ 'component-newsletter.css' | asset_url | stylesheet_tag }}
-{{ 'newsletter-section.css' | asset_url | stylesheet_tag }}
+<section class="w-full bg-[#0A0E1A] py-16 lg:py-24 relative overflow-hidden border-b border-cyan-500/20">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
+    
+    <!-- Terminal Container -->
+    <div class="rounded-2xl bg-[#0F172A]/90 backdrop-blur-xl border border-cyan-500/40 p-6 sm:p-12 text-center shadow-[0_0_50px_rgba(0,0,0,0.8),0_0_30px_rgba(0,240,255,0.15)] relative overflow-hidden">
+      <!-- Glow ambient light -->
+      <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-80 h-40 bg-cyan-500/20 rounded-full blur-3xl pointer-events-none"></div>
 
-{%- style -%}
-  .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
-  }
+      <!-- Top Terminal Header Bar -->
+      <div class="flex items-center justify-between border-b border-slate-800 pb-4 mb-8 text-xs font-mono">
+        <div class="flex items-center gap-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-pink-500/80"></span>
+          <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></span>
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/80"></span>
+          <span class="text-slate-500 ml-2">root@nexus-node: ~</span>
+        </div>
+        <div class="text-cyan-400 font-bold uppercase tracking-widest hidden sm:inline">
+          DISPATCH PROTOCOL // 4096-BIT
+        </div>
+      </div>
 
-  @media screen and (min-width: 750px) {
-    .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
-    }
-  }
-{%- endstyle -%}
+      <!-- Content -->
+      <div class="space-y-4 max-w-xl mx-auto mb-8">
+        <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-white font-sans">
+          SUBSCRIBE TO <span class="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">QUANTUM DISPATCH</span>
+        </h2>
+        <p class="text-slate-400 text-sm sm:text-base">
+          Receive priority hardware allocation notifications, firmware updates, and exclusive architecture telemetry directly to your console.
+        </p>
+      </div>
 
-<div class="newsletter center {% if section.settings.full_width == false %}newsletter--narrow page-width{% endif %}">
-  <div class="newsletter__wrapper color-{{ section.settings.color_scheme }} gradient content-container isolate{% if section.settings.full_width %} content-container--full-width{% endif %} section-{{ section.id }}-padding">
-    {%- for block in section.blocks -%}
-      {%- case block.type -%}
-        {%- when '@app' -%}
-          {% render block %}
-        {%- when 'heading' -%}
-          <h2
-            class="inline-richtext {{ block.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-            {{ block.shopify_attributes }}
-            {% if settings.animations_reveal_on_scroll %}
-              data-cascade
-              style="--animation-order: {{ forloop.index }};"
-            {% endif %}
-          >
-            {{ block.settings.heading }}
-          </h2>
-        {%- when 'paragraph' -%}
-          <div
-            class="newsletter__subheading rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-            {{ block.shopify_attributes }}
-            {% if settings.animations_reveal_on_scroll %}
-              data-cascade
-              style="--animation-order: {{ forloop.index }};"
-            {% endif %}
-          >
-            {{ block.settings.text }}
-          </div>
-        {%- when 'email_form' -%}
-          <div {{ block.shopify_attributes }}>
-            {% form 'customer', class: 'newsletter-form' %}
-              <input type="hidden" name="contact[tags]" value="newsletter">
-              <div
-                class="newsletter-form__field-wrapper{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-                {% if settings.animations_reveal_on_scroll %}
-                  data-cascade
-                  style="--animation-order: {{ forloop.index }};"
-                {% endif %}
-              >
-                <div class="field">
-                  <input
-                    id="NewsletterForm--{{ section.id }}"
-                    type="email"
-                    name="contact[email]"
-                    class="field__input"
-                    value="{{ form.email }}"
-                    aria-required="true"
-                    autocorrect="off"
-                    autocapitalize="off"
-                    autocomplete="email"
-                    {% if form.errors %}
-                      autofocus
-                      aria-invalid="true"
-                      aria-describedby="Newsletter-error--{{ section.id }}"
-                    {% elsif form.posted_successfully? %}
-                      aria-describedby="Newsletter-success--{{ section.id }}"
-                    {% endif %}
-                    placeholder="{{ 'newsletter.label' | t }}"
-                    required
-                  >
-                  <label class="field__label" for="NewsletterForm--{{ section.id }}">
-                    {{ 'newsletter.label' | t }}
-                  </label>
-                  <button
-                    type="submit"
-                    class="newsletter-form__button field__button"
-                    name="commit"
-                    id="Subscribe"
-                    aria-label="{{ 'newsletter.button_label' | t }}"
-                  >
-                    <span class="svg-wrapper">
-                      {{- 'icon-arrow.svg' | inline_asset_content -}}
-                    </span>
-                  </button>
-                </div>
-                {%- if form.errors -%}
-                  <small class="newsletter-form__message form__message" id="Newsletter-error--{{ section.id }}">
-                    <span class="svg-wrapper">
-                      {{- 'icon-error.svg' | inline_asset_content -}}
-                    </span>
-                    {{- form.errors.translated_fields.email | capitalize }}
-                    {{ form.errors.messages.email -}}
-                  </small>
-                {%- endif -%}
+      <!-- Subscription Form -->
+      <div class="max-w-md mx-auto">
+        {% form 'customer', class: 'newsletter-form' %}
+          <input type="hidden" name="contact[tags]" value="newsletter">
+          
+          {%- if form.posted_successfully? -%}
+            <div class="p-4 rounded-lg bg-emerald-950/80 border border-emerald-500/50 text-emerald-300 font-mono text-sm shadow-[0_0_20px_rgba(52,211,153,0.3)]">
+              ✓ ENCRYPTION CONFIRMED // YOU ARE SUBSCRIBED TO THE QUANTUM FEED.
+            </div>
+          {%- else -%}
+            {%- if form.errors -%}
+              <div class="p-3 mb-4 rounded-lg bg-pink-950/80 border border-pink-500/50 text-pink-300 font-mono text-xs">
+                {{ form.errors.translated_fields.email | capitalize }}
+                {{ form.errors.messages.email }}
               </div>
-              {%- if form.posted_successfully? -%}
-                <h3
-                  class="newsletter-form__message newsletter-form__message--success form__message"
-                  id="Newsletter-success--{{ section.id }}"
-                  tabindex="-1"
-                  autofocus
+            {%- endif -%}
+
+            <div class="flex flex-col sm:flex-row gap-3">
+              <div class="relative flex-1">
+                <input
+                  id="NewsletterForm--{{ section.id }}"
+                  type="email"
+                  name="contact[email]"
+                  class="w-full px-4 py-3.5 rounded-lg bg-[#070A14] border border-slate-700 text-white font-mono text-xs sm:text-sm placeholder-slate-500 focus:outline-none focus:border-cyan-400 focus:shadow-[0_0_15px_rgba(0,240,255,0.4)] transition-all"
+                  value="{{ form.email }}"
+                  aria-required="true"
+                  autocorrect="off"
+                  autocapitalize="off"
+                  autocomplete="email"
+                  placeholder="operator@nexus.network"
+                  required
                 >
-                  <span class="svg-wrapper">
-                    {{- 'icon-success.svg' | inline_asset_content -}}
-                  </span>
-                  {{- 'newsletter.success' | t }}
-                </h3>
-              {%- endif -%}
-            {% endform %}
-          </div>
-      {%- endcase -%}
-    {%- endfor -%}
+              </div>
+
+              <button
+                type="submit"
+                class="px-6 py-3.5 rounded-lg bg-cyan-400 text-slate-950 font-mono text-xs sm:text-sm font-bold uppercase tracking-wider hover:bg-cyan-300 hover:shadow-[0_0_20px_rgba(0,240,255,0.6)] transition-all shrink-0 cursor-pointer"
+                name="commit"
+              >
+                TRANSMIT ↵
+              </button>
+            </div>
+
+            <div class="flex items-center justify-center gap-2 mt-4 text-[11px] font-mono text-slate-500">
+              <svg class="w-3.5 h-3.5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+              </svg>
+              <span>ZERO SPAM. 4096-BIT ZERO-KNOWLEDGE PROTOCOL.</span>
+            </div>
+          {%- endif -%}
+        {% endform %}
+      </div>
+
+    </div>
+
   </div>
-</div>
+</section>
 
 {% schema %}
 {
-  "name": "t:sections.newsletter.name",
+  "name": "Newsletter Terminal",
   "tag": "section",
-  "class": "section",
-  "disabled_on": {
-    "groups": ["header"]
-  },
-  "settings": [
-    {
-      "type": "paragraph",
-      "content": "t:sections.newsletter.settings.paragraph.content"
-    },
-    {
-      "type": "color_scheme",
-      "id": "color_scheme",
-      "label": "t:sections.all.colors.label",
-      "default": "scheme-1"
-    },
-    {
-      "type": "checkbox",
-      "id": "full_width",
-      "default": true,
-      "label": "t:sections.newsletter.settings.full_width.label"
-    },
-    {
-      "type": "header",
-      "content": "t:sections.all.padding.section_padding_heading"
-    },
-    {
-      "type": "range",
-      "id": "padding_top",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "t:sections.all.padding.padding_top",
-      "default": 40
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "t:sections.all.padding.padding_bottom",
-      "default": 52
-    }
-  ],
-  "blocks": [
-    {
-      "type": "heading",
-      "name": "t:sections.newsletter.blocks.heading.name",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "inline_richtext",
-          "id": "heading",
-          "default": "t:sections.newsletter.blocks.heading.settings.heading.default",
-          "label": "t:sections.newsletter.blocks.heading.settings.heading.label"
-        },
-        {
-          "type": "select",
-          "id": "heading_size",
-          "options": [
-            {
-              "value": "h2",
-              "label": "t:sections.all.heading_size.options__1.label"
-            },
-            {
-              "value": "h1",
-              "label": "t:sections.all.heading_size.options__2.label"
-            },
-            {
-              "value": "h0",
-              "label": "t:sections.all.heading_size.options__3.label"
-            },
-            {
-              "value": "hxl",
-              "label": "t:sections.all.heading_size.options__4.label"
-            },
-            {
-              "value": "hxxl",
-              "label": "t:sections.all.heading_size.options__5.label"
-            }
-          ],
-          "default": "h1",
-          "label": "t:sections.all.heading_size.label"
-        }
-      ]
-    },
-    {
-      "type": "paragraph",
-      "name": "t:sections.newsletter.blocks.paragraph.name",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "richtext",
-          "id": "text",
-          "default": "t:sections.newsletter.blocks.paragraph.settings.paragraph.default",
-          "label": "t:sections.newsletter.blocks.paragraph.settings.paragraph.label"
-        }
-      ]
-    },
-    {
-      "type": "email_form",
-      "name": "t:sections.newsletter.blocks.email_form.name",
-      "limit": 1
-    },
-    {
-      "type": "@app"
-    }
-  ],
+  "class": "section-newsletter-tech",
+  "settings": [],
   "presets": [
     {
-      "name": "t:sections.newsletter.presets.name",
-      "blocks": [
-        {
-          "type": "heading"
-        },
-        {
-          "type": "paragraph"
-        },
-        {
-          "type": "email_form"
-        }
-      ]
+      "name": "Newsletter Terminal"
     }
   ]
 }

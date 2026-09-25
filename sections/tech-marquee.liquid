@@ -1,0 +1,54 @@
+<section class="w-full bg-[#070A14] py-4 border-y border-cyan-500/20 overflow-hidden relative select-none">
+  <!-- Gradient Edge Shadows -->
+  <div class="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-[#070A14] to-transparent z-10 pointer-events-none"></div>
+  <div class="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-[#070A14] to-transparent z-10 pointer-events-none"></div>
+
+  <div class="flex whitespace-nowrap overflow-hidden">
+    <div class="inline-flex items-center gap-8 animate-[marquee_25s_linear_infinite]">
+      {%- for i in (1..2) -%}
+        <div class="inline-flex items-center gap-8 text-xs sm:text-sm font-mono tracking-widest uppercase">
+          <span class="text-cyan-400 font-bold flex items-center gap-2">
+            <span class="w-1.5 h-1.5 bg-cyan-400 rounded-full shadow-[0_0_8px_#00F0FF]"></span>
+            NEURAL ENGINE V4
+          </span>
+          <span class="text-slate-600">◆</span>
+          <span class="text-slate-300">QUANTUM TELEMETRY</span>
+          <span class="text-slate-600">◆</span>
+          <span class="text-purple-400 font-bold flex items-center gap-2">
+            <span class="w-1.5 h-1.5 bg-purple-400 rounded-full shadow-[0_0_8px_#8B5CF6]"></span>
+            AEROSPACE GRADE TITANIUM
+          </span>
+          <span class="text-slate-600">◆</span>
+          <span class="text-slate-300">ZERO LATENCY SYNC</span>
+          <span class="text-slate-600">◆</span>
+          <span class="text-sky-400 font-bold flex items-center gap-2">
+            <span class="w-1.5 h-1.5 bg-sky-400 rounded-full shadow-[0_0_8px_#38BDF8]"></span>
+            HARDWARE ENCLAVE SECURITY
+          </span>
+          <span class="text-slate-600">◆</span>
+          <span class="text-slate-300">100W GaN FAST CHARGE</span>
+          <span class="text-slate-600">◆</span>
+          <span class="text-pink-400 font-bold flex items-center gap-2">
+            <span class="w-1.5 h-1.5 bg-pink-400 rounded-full shadow-[0_0_8px_#EC4899]"></span>
+            CYBERNETIC OS 2.4
+          </span>
+          <span class="text-slate-600">◆</span>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Tech Marquee",
+  "tag": "section",
+  "class": "section-tech-marquee",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Tech Marquee"
+    }
+  ]
+}
+{% endschema %}

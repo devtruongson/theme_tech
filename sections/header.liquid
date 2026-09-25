@@ -205,7 +205,14 @@
             }}
           </div>
         {%- else -%}
-          <span class="h2">{{ shop.name }}</span>
+          <span class="inline-flex items-center gap-2 font-mono font-bold tracking-widest text-xl text-cyan-400">
+            <span class="relative flex h-2.5 w-2.5">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-cyan-400 shadow-[0_0_10px_#00F0FF]"></span>
+            </span>
+            <span class="uppercase tracking-widest">{{ shop.name | default: 'NEXUS // TECH' }}</span>
+            <span class="hidden sm:inline-block px-1.5 py-0.5 text-[9px] uppercase font-mono tracking-wider bg-cyan-950 text-cyan-300 border border-cyan-500/40 rounded">v4.2</span>
+          </span>
         {%- endif -%}
       </a>
       {%- if request.page_type == 'index' -%}
@@ -248,7 +255,14 @@
             }}
           </div>
         {%- else -%}
-          <span class="h2">{{ shop.name }}</span>
+          <span class="inline-flex items-center gap-2 font-mono font-bold tracking-widest text-xl text-cyan-400">
+            <span class="relative flex h-2.5 w-2.5">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-cyan-400 shadow-[0_0_10px_#00F0FF]"></span>
+            </span>
+            <span class="uppercase tracking-widest">{{ shop.name | default: 'NEXUS // TECH' }}</span>
+            <span class="hidden sm:inline-block px-1.5 py-0.5 text-[9px] uppercase font-mono tracking-wider bg-cyan-950 text-cyan-300 border border-cyan-500/40 rounded">v4.2</span>
+          </span>
         {%- endif -%}
       </a>
       {%- if request.page_type == 'index' -%}

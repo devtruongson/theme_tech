@@ -1,0 +1,185 @@
+<section id="specs-matrix" class="w-full bg-[#070A14] py-16 lg:py-24 relative overflow-hidden border-b border-cyan-500/20">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    
+    <!-- Section Title -->
+    <div class="text-center max-w-3xl mx-auto mb-12 space-y-3">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900 border border-purple-500/40 text-purple-300 font-mono text-xs tracking-widest uppercase">
+        <span>HARDWARE TELEMETRY</span>
+      </div>
+      <h2 class="text-3xl sm:text-5xl font-bold tracking-tight text-white font-sans">
+        FULL COMPONENT <span class="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">SPECIFICATIONS</span>
+      </h2>
+      <p class="text-slate-400 text-sm sm:text-base">
+        Inspect the engineering architecture powering the Nexus neural ecosystem.
+      </p>
+    </div>
+
+    <!-- Tabs Navigation -->
+    <div class="flex items-center justify-center gap-2 sm:gap-4 mb-8 overflow-x-auto pb-2" role="tablist">
+      <button type="button" class="spec-tab-btn active px-4 py-2.5 rounded-lg font-mono text-xs uppercase tracking-wider font-bold transition-all border border-cyan-500/60 bg-cyan-950/80 text-cyan-300 shadow-[0_0_15px_rgba(0,240,255,0.3)]" data-target="tab-compute">
+        01 // Compute & AI
+      </button>
+      <button type="button" class="spec-tab-btn px-4 py-2.5 rounded-lg font-mono text-xs uppercase tracking-wider font-bold transition-all border border-slate-800 bg-[#0F172A] text-slate-400 hover:text-white hover:border-slate-700" data-target="tab-wireless">
+        02 // Wireless Mesh
+      </button>
+      <button type="button" class="spec-tab-btn px-4 py-2.5 rounded-lg font-mono text-xs uppercase tracking-wider font-bold transition-all border border-slate-800 bg-[#0F172A] text-slate-400 hover:text-white hover:border-slate-700" data-target="tab-security">
+        03 // Enclave Cipher
+      </button>
+      <button type="button" class="spec-tab-btn px-4 py-2.5 rounded-lg font-mono text-xs uppercase tracking-wider font-bold transition-all border border-slate-800 bg-[#0F172A] text-slate-400 hover:text-white hover:border-slate-700" data-target="tab-power">
+        04 // Solid Power
+      </button>
+    </div>
+
+    <!-- Tab Panels Container -->
+    <div class="max-w-4xl mx-auto rounded-2xl bg-[#0F172A]/80 backdrop-blur-xl border border-slate-800 p-6 sm:p-8 shadow-2xl">
+      
+      <!-- Panel 1: Compute -->
+      <div id="tab-compute" class="spec-tab-panel space-y-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="p-4 rounded-xl bg-[#0A0E1A] border border-slate-800/80">
+            <div class="text-xs font-mono text-cyan-400">NEURAL ENGINE</div>
+            <div class="text-lg font-bold text-white mt-1">128-Core Axon Matrix V4</div>
+            <p class="text-xs text-slate-400 mt-1">Dedicated transformer hardware acceleration for low-latency on-device inference.</p>
+          </div>
+          <div class="p-4 rounded-xl bg-[#0A0E1A] border border-slate-800/80">
+            <div class="text-xs font-mono text-cyan-400">INFERENCE PRECISION</div>
+            <div class="text-lg font-bold text-white mt-1">FP8, INT4, BF16 Native</div>
+            <p class="text-xs text-slate-400 mt-1">Dynamic quantization pipeline ensuring maximum compute density per milliwatt.</p>
+          </div>
+          <div class="p-4 rounded-xl bg-[#0A0E1A] border border-slate-800/80">
+            <div class="text-xs font-mono text-cyan-400">MEMORY BANDWIDTH</div>
+            <div class="text-lg font-bold text-white mt-1">512 GB/s LPDDR5X Unified</div>
+            <p class="text-xs text-slate-400 mt-1">Zero-copy shared memory architecture between neural cores and visual DSP.</p>
+          </div>
+          <div class="p-4 rounded-xl bg-[#0A0E1A] border border-slate-800/80">
+            <div class="text-xs font-mono text-cyan-400">THERMAL HEADROOM</div>
+            <div class="text-lg font-bold text-white mt-1">Vapor Chamber Cryo-Loop</div>
+            <p class="text-xs text-slate-400 mt-1">Sintered copper composite chamber with passive graphite dissipation foil.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel 2: Wireless (Hidden by default) -->
+      <div id="tab-wireless" class="spec-tab-panel hidden space-y-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="p-4 rounded-xl bg-[#0A0E1A] border border-slate-800/80">
+            <div class="text-xs font-mono text-purple-400">WIRELESS PROTOCOL</div>
+            <div class="text-lg font-bold text-white mt-1">Quantum-Sync UWB 2.4</div>
+            <p class="text-xs text-slate-400 mt-1">Spatial positioning accurate within 2cm with sub-millisecond audio streaming.</p>
+          </div>
+          <div class="p-4 rounded-xl bg-[#0A0E1A] border border-slate-800/80">
+            <div class="text-xs font-mono text-purple-400">STREAMING LATENCY</div>
+            <div class="text-lg font-bold text-white mt-1">0.12 ms Real-Time</div>
+            <p class="text-xs text-slate-400 mt-1">Deterministic wireless packets with zero packet jitter over multi-mesh channels.</p>
+          </div>
+          <div class="p-4 rounded-xl bg-[#0A0E1A] border border-slate-800/80">
+            <div class="text-xs font-mono text-purple-400">MESH NETWORK</div>
+            <div class="text-lg font-bold text-white mt-1">64-Node Local P2P</div>
+            <p class="text-xs text-slate-400 mt-1">Self-healing local mesh routing without cloud server dependency.</p>
+          </div>
+          <div class="p-4 rounded-xl bg-[#0A0E1A] border border-slate-800/80">
+            <div class="text-xs font-mono text-purple-400">RANGE ENVELOPE</div>
+            <div class="text-lg font-bold text-white mt-1">100m Line of Sight</div>
+            <p class="text-xs text-slate-400 mt-1">Adaptive beamforming antenna array with multi-path interference rejection.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel 3: Security (Hidden by default) -->
+      <div id="tab-security" class="spec-tab-panel hidden space-y-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="p-4 rounded-xl bg-[#0A0E1A] border border-slate-800/80">
+            <div class="text-xs font-mono text-sky-400">ISOLATION ENCLAVE</div>
+            <div class="text-lg font-bold text-white mt-1">CipherCore 4096-Bit</div>
+            <p class="text-xs text-slate-400 mt-1">Physically isolated silicon dies for biometric entropy key management.</p>
+          </div>
+          <div class="p-4 rounded-xl bg-[#0A0E1A] border border-slate-800/80">
+            <div class="text-xs font-mono text-sky-400">POST-QUANTUM CIPHER</div>
+            <div class="text-lg font-bold text-white mt-1">Kyber-1024 & Dilithium</div>
+            <p class="text-xs text-slate-400 mt-1">NIST-standardized lattice cryptography resistant to quantum factorization.</p>
+          </div>
+          <div class="p-4 rounded-xl bg-[#0A0E1A] border border-slate-800/80">
+            <div class="text-xs font-mono text-sky-400">TAMPER SENSORS</div>
+            <div class="text-lg font-bold text-white mt-1">Laser & Micro-Vibration</div>
+            <p class="text-xs text-slate-400 mt-1">Instant silicon fuse zeroization upon unauthorized enclosure penetration.</p>
+          </div>
+          <div class="p-4 rounded-xl bg-[#0A0E1A] border border-slate-800/80">
+            <div class="text-xs font-mono text-sky-400">VERIFICATION AUDIT</div>
+            <div class="text-lg font-bold text-white mt-1">Zero-Knowledge Attestation</div>
+            <p class="text-xs text-slate-400 mt-1">Prove device integrity to network nodes without disclosing identity.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel 4: Power (Hidden by default) -->
+      <div id="tab-power" class="spec-tab-panel hidden space-y-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="p-4 rounded-xl bg-[#0A0E1A] border border-slate-800/80">
+            <div class="text-xs font-mono text-emerald-400">CHARGE PROTOCOL</div>
+            <div class="text-lg font-bold text-white mt-1">100W Solid-State GaN</div>
+            <p class="text-xs text-slate-400 mt-1">0 to 80% capacity in 18 minutes with pulsed temperature regulation.</p>
+          </div>
+          <div class="p-4 rounded-xl bg-[#0A0E1A] border border-slate-800/80">
+            <div class="text-xs font-mono text-emerald-400">CONTINUOUS RUNTIME</div>
+            <div class="text-lg font-bold text-white mt-1">48 Hours Heavy Load</div>
+            <p class="text-xs text-slate-400 mt-1">Solid electrolyte silicon-anode cell with 450 Wh/kg energy density.</p>
+          </div>
+          <div class="p-4 rounded-xl bg-[#0A0E1A] border border-slate-800/80">
+            <div class="text-xs font-mono text-emerald-400">BATTERY LONGEVITY</div>
+            <div class="text-lg font-bold text-white mt-1">2,000 Full Cycles (95%)</div>
+            <p class="text-xs text-slate-400 mt-1">Active cathode stabilization eliminating dendrite formation.</p>
+          </div>
+          <div class="p-4 rounded-xl bg-[#0A0E1A] border border-slate-800/80">
+            <div class="text-xs font-mono text-emerald-400">REVERSE DISPATCH</div>
+            <div class="text-lg font-bold text-white mt-1">15W Mag-Sync Wireless</div>
+            <p class="text-xs text-slate-400 mt-1">Wirelessly power auxiliary cyber headsets or wearables on contact.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const tabs = document.querySelectorAll('.spec-tab-btn');
+    const panels = document.querySelectorAll('.spec-tab-panel');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => {
+          t.classList.remove('active', 'border-cyan-500/60', 'bg-cyan-950/80', 'text-cyan-300', 'shadow-[0_0_15px_rgba(0,240,255,0.3)]');
+          t.classList.add('border-slate-800', 'bg-[#0F172A]', 'text-slate-400');
+        });
+
+        tab.classList.add('active', 'border-cyan-500/60', 'bg-cyan-950/80', 'text-cyan-300', 'shadow-[0_0_15px_rgba(0,240,255,0.3)]');
+        tab.classList.remove('border-slate-800', 'bg-[#0F172A]', 'text-slate-400');
+
+        const targetId = tab.getAttribute('data-target');
+        panels.forEach(panel => {
+          if (panel.id === targetId) {
+            panel.classList.remove('hidden');
+          } else {
+            panel.classList.add('hidden');
+          }
+        });
+      });
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Tech Specs Matrix",
+  "tag": "section",
+  "class": "section-tech-specs",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Tech Specs Matrix"
+    }
+  ]
+}
+{% endschema %}
