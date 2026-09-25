@@ -74,10 +74,41 @@
 
   {% assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' %}
   <product-component view-event-payload="{{ product | standard_event_data: 'view', context: 'page' | escape }}">
-    <div class="page-width">
-      <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
-        <div class="grid__item product__media-wrapper">
-          {% render 'product-media-gallery', variant_images: variant_images %}
+    <div class="tech-container">
+      <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid--1-col grid--2-col-tablet gap-8 lg:gap-12 items-start">
+        <div class="grid__item product__media-wrapper relative group overflow-hidden">
+          {%- if product.media.size > 0 -%}
+            {% render 'product-media-gallery', variant_images: variant_images %}
+          {%- else -%}
+            <div class="relative w-full aspect-square rounded-xl overflow-hidden bg-[#070A14] flex items-center justify-center border border-slate-800/80">
+              {%- liquid
+                assign fallback_demo_img = "product-neural-processor.jpg"
+                if product.title contains "Audio" or product.title contains "Headset" or product.handle contains "audio"
+                  assign fallback_demo_img = "product-cyber-audio.jpg"
+                elsif product.title contains "Watch" or product.title contains "Wearable" or product.handle contains "watch"
+                  assign fallback_demo_img = "product-neural-watch.jpg"
+                endif
+              -%}
+              <img src="{{ fallback_demo_img | asset_url }}" alt="{{ product.title | default: 'Nexus Hardware Unit' }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+              
+              <!-- Corner Tech Accents -->
+              <div class="absolute top-4 left-4 w-3.5 h-3.5 border-t-2 border-l-2 border-cyan-400 pointer-events-none"></div>
+              <div class="absolute top-4 right-4 w-3.5 h-3.5 border-t-2 border-r-2 border-cyan-400 pointer-events-none"></div>
+              <div class="absolute bottom-4 left-4 w-3.5 h-3.5 border-b-2 border-l-2 border-cyan-400 pointer-events-none"></div>
+              <div class="absolute bottom-4 right-4 w-3.5 h-3.5 border-b-2 border-r-2 border-cyan-400 pointer-events-none"></div>
+
+              <!-- Top Left Status Chip -->
+              <div class="absolute top-4 left-4 ml-2 mt-2 px-2.5 py-1 rounded bg-[#0A0E1A]/90 backdrop-blur-md border border-cyan-500/40 text-[10px] font-mono text-cyan-300 font-bold uppercase tracking-wider shadow-[0_0_12px_rgba(0,240,255,0.25)]">
+                SPEC // CLASS A
+              </div>
+
+              <!-- Top Right Live Status Chip -->
+              <div class="absolute top-4 right-4 mr-2 mt-2 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-900/90 backdrop-blur-md text-[10px] font-mono text-emerald-400 border border-emerald-500/30">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+                <span>SYSTEM ONLINE</span>
+              </div>
+            </div>
+          {%- endif -%}
         </div>
         <div class="product__info-wrapper grid__item{% if settings.page_width > 1400 and section.settings.media_size == "small" %} product__info-wrapper--extra-padding{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
           <section
@@ -98,6 +129,18 @@
                     {{- block.settings.text -}}
                   </p>
                 {%- when 'title' -%}
+                  <!-- Cyber Protocol Header -->
+                  <div class="flex items-center gap-2 mb-2 font-mono">
+                    <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#070A14] border border-cyan-500/40 text-[10px] text-cyan-300 font-bold uppercase tracking-wider shadow-[0_0_10px_rgba(0,240,255,0.2)]">
+                      <span class="relative flex h-1.5 w-1.5">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-cyan-400"></span>
+                      </span>
+                      QUANTUM ARCHITECTURE
+                    </span>
+                    <span class="text-xs text-slate-500">// REV 4.2</span>
+                    <span class="ml-auto text-xs text-emerald-400 font-semibold">● IN STOCK</span>
+                  </div>
                   <div class="product__title" {{ block.shopify_attributes }}>
                     <h1>{{ product.title | escape }}</h1>
                     <a href="{{ product.url }}" class="product__title">
@@ -105,6 +148,26 @@
                         {{ product.title | escape }}
                       </h2>
                     </a>
+                  </div>
+
+                  <!-- Quick Telemetry HUD -->
+                  <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 py-3 my-2 border-y border-slate-800/80 text-[11px] font-mono">
+                    <div class="p-2 rounded bg-[#070A14] border border-slate-800/80 text-center">
+                      <span class="text-slate-500 block text-[9px] uppercase">Latency</span>
+                      <span class="text-cyan-400 font-bold">0.12ms</span>
+                    </div>
+                    <div class="p-2 rounded bg-[#070A14] border border-slate-800/80 text-center">
+                      <span class="text-slate-500 block text-[9px] uppercase">Neural NPU</span>
+                      <span class="text-purple-400 font-bold">128-Core</span>
+                    </div>
+                    <div class="p-2 rounded bg-[#070A14] border border-slate-800/80 text-center">
+                      <span class="text-slate-500 block text-[9px] uppercase">Cipher</span>
+                      <span class="text-sky-400 font-bold">4096-Bit</span>
+                    </div>
+                    <div class="p-2 rounded bg-[#070A14] border border-slate-800/80 text-center">
+                      <span class="text-slate-500 block text-[9px] uppercase">Fast Charge</span>
+                      <span class="text-emerald-400 font-bold">100W GaN</span>
+                    </div>
                   </div>
                 {%- when 'price' -%}
                   <div id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
@@ -499,6 +562,38 @@
                     section_id: section.id,
                     show_pickup_availability: true
                   -%}
+
+                  <!-- Hardware Security & Dispatch Badges -->
+                  <div class="grid grid-cols-2 gap-2.5 pt-5 mt-3 border-t border-slate-800/80 text-[11px] font-mono">
+                    <div class="flex items-center gap-2 p-2.5 rounded-lg bg-[#070A14] border border-slate-800 text-slate-300">
+                      <span class="text-cyan-400 text-base">⚡</span>
+                      <div>
+                        <div class="text-white font-bold">EXPRESS DISPATCH</div>
+                        <div class="text-[10px] text-slate-500">Ships within 24 Hours</div>
+                      </div>
+                    </div>
+                    <div class="flex items-center gap-2 p-2.5 rounded-lg bg-[#070A14] border border-slate-800 text-slate-300">
+                      <span class="text-purple-400 text-base">🔒</span>
+                      <div>
+                        <div class="text-white font-bold">HARDWARE ENCLAVE</div>
+                        <div class="text-[10px] text-slate-500">End-to-End Encrypted</div>
+                      </div>
+                    </div>
+                    <div class="flex items-center gap-2 p-2.5 rounded-lg bg-[#070A14] border border-slate-800 text-slate-300">
+                      <span class="text-emerald-400 text-base">🛡️</span>
+                      <div>
+                        <div class="text-white font-bold">2-YEAR CARE</div>
+                        <div class="text-[10px] text-slate-500">Full Replacement</div>
+                      </div>
+                    </div>
+                    <div class="flex items-center gap-2 p-2.5 rounded-lg bg-[#070A14] border border-slate-800 text-slate-300">
+                      <span class="text-sky-400 text-base">🔄</span>
+                      <div>
+                        <div class="text-white font-bold">RETURN PROTOCOL</div>
+                        <div class="text-[10px] text-slate-500">30-Day Zero-Risk</div>
+                      </div>
+                    </div>
+                  </div>
                 {%- when 'rating' -%}
                   {%- if product.metafields.reviews.rating.value != blank -%}
                     <div class="rating-wrapper">
